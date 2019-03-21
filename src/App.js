@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 import React, { Component } from 'react';
 import $ from 'jquery';
-import logo from './logo.svg';
 import './App.css';
 const QUOTES = [
 ["Success is a science; if you have the conditions, you get the result.", "Oscar Wilde"],
