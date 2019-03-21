@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 import React, { Component } from 'react';
+import $ from 'jquery';
 import logo from './logo.svg';
 import './App.css';
 const QUOTES = [
@@ -17,7 +18,6 @@ const COLORS =
 ["#16a085", "#27ae60", "#2c3e50", "#f39c12", "#e74c3c",
  "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99",
  "#77B1A9", "#73A857"];
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -28,12 +28,12 @@ class App extends Component {
     this.getRandomQuote = this.getRandomQuote.bind(this);
   }
   getRandomQuote(){
+    changeColor();
     let quoteIndex = Math.floor(Math.random()*QUOTES.length);
     this.setState({
       quote: QUOTES[quoteIndex][0],
       author: QUOTES[quoteIndex][1]
     });
-    console.log(quoteIndex);
   }
   componentDidMount(){
     this.getRandomQuote();
@@ -48,7 +48,7 @@ class App extends Component {
             id = "tweet-quote"
             target = "_blank"
             href={"https://twitter.com/intent/tweet?hashtags=topquotes&text=" + '"' + this.state.quote + '" By ' + this.state.author}>
-            <i class="fab fa-twitter-square button"></i>
+            <i className="fab fa-twitter-square button"></i>
           </a>
           <button
             id="new-quote"
@@ -60,6 +60,9 @@ class App extends Component {
     );
   }
 }
-
-
+function changeColor(){
+  let newColor = COLORS[Math.floor(Math.random()*COLORS.length)];
+  $("body, #new-quote").css("background-color", newColor);
+  $("#text, #author, #tweet-quote").css("color", newColor);
+}
 export default App;

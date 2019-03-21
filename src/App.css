@@ -2,7 +2,6 @@
 body{
   font-family: "Raleway", monospace;
   font-weight: 400;
-  background-color: lime;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,15 +31,18 @@ a, a:hover, a:visited, a:active {
   color:inherit;
 }
 #new-quote{
-  background-color: lime;
   padding: 10px;
   border: none;
   border-radius: 2px;
   float: right;
   font-size: 1em;
   font-family: "Raleway", monospace;
+  color:white;
   margin: none;
 }
 #tweet-quote{
   float:left;
+}
+.Joker {
+  font-size: 10em;
 }
