@@ -3,34 +3,40 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 const QUOTES = [
-["This is a random quote number 1", "Author 1"],
-["This is a random quote number 2", "Author 2"],
-["This is a random quote number 3", "Author 3"],
-["This is a random quote number 4", "Author 4"],
-["This is a random quote number 5", "Author 5"],
-["This is a random quote number 6", "Author 6"],
-["This is a random quote number 7", "Author 7"],
-["This is a random quote number 8", "Author 8"],
-["This is a random quote number 9", "Author 9"],
+["Success is a science; if you have the conditions, you get the result.", "Oscar Wilde"],
+["The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.", "Helen Keller"],
+["The only thing necessary for the triumph of evil is for good men to do nothing.", "Edmund Burke"],
+["My mama always said ‘Life is like a box of chocolate. You never know what you’re gonna get.’", "Forest Gump"],
+["Education is not the learning of facts, it’s rather the training of the mind to think.", "Albert Einstein"],
+["Be the change that you want to see in the world.", "Mahatma Gandhi"],
+["A man is but a product of his thoughts. What he thinks he becomes.", "Mahatma Gandhi"],
+["It takes nothing away from a human to be kind to an animal.", "Joaquin Phoenix"],
+["All beings tremble before violence. All love life. All fear death. See yourself in others. Then whom can you hurt? What harm can you do?", "Buddha"],
 ];
-const COLORS = "purple";
+const COLORS =
+["#16a085", "#27ae60", "#2c3e50", "#f39c12", "#e74c3c",
+ "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99",
+ "#77B1A9", "#73A857"];
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      author: "Default Author",
-      quote: "Default quote"
+      author: "",
+      quote: ""
     };
     this.getRandomQuote = this.getRandomQuote.bind(this);
   }
   getRandomQuote(){
-    let quoteIndex = Math.floor(Math.random()*9);
+    let quoteIndex = Math.floor(Math.random()*QUOTES.length);
     this.setState({
       quote: QUOTES[quoteIndex][0],
       author: QUOTES[quoteIndex][1]
     });
     console.log(quoteIndex);
+  }
+  componentDidMount(){
+    this.getRandomQuote();
   }
   render() {
     return (
@@ -38,14 +44,22 @@ class App extends Component {
         <div id="quote-box">
           <p id="text">{this.state.quote}</p>
           <p id="author">{this.state.author}</p>
-          <button id="new-quote" onClick={this.getRandomQuote}>
-            New quote
+          <a
+            id = "tweet-quote"
+            target = "_blank"
+            href={"https://twitter.com/intent/tweet?hashtags=topquotes&text=" + '"' + this.state.quote + '" By ' + this.state.author}>
+            <i class="fab fa-twitter-square button"></i>
+          </a>
+          <button
+            id="new-quote"
+            onClick={this.getRandomQuote}>
+            New Quote!
           </button>
-          <button id="tweet-quote" >Tweet</button>
         </div>
       </div>
     );
   }
 }
+
 
 export default App;
